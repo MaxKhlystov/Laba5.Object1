@@ -11,11 +11,12 @@ namespace Laba5.Objeckt
         Player player;
         Marker marker;
         Circle circle;
+        Random rnd = new Random();
         int point = 0;
         public Form1()
         {
             InitializeComponent();
-            circle = new Circle(pbMain.Width / 2, pbMain.Height / 2, 0);
+            circle = new Circle(pbMain.Width / 3, pbMain.Height / 3, 0);
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
             player.OnOverlap += (p, obj) =>
@@ -23,14 +24,20 @@ namespace Laba5.Objeckt
                 txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
             };
 
-            player.OnMarkerOverlap += (m) =>
+            player.OnCircleOverlap += (m) =>
             {
                 txtBoxPoint.Clear();
                 objects.Remove(m);
-                marker = null;
+                circle = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0); ;
                 point++;
                 string str = "Очки: " + point;
                 txtBoxPoint.Text = str;
+            };
+
+            player.OnMarkerOverlap += (m) =>
+            {
+                objects.Remove(m);
+                marker = null;
             };
 
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
@@ -53,10 +60,16 @@ namespace Laba5.Objeckt
                     player.Overlap(obj);
                 }
             }
-            foreach (var obj in objects)
+            foreach (var obj in objects.ToList())
             {
                 g.Transform = obj.GetTransform();
                 obj.Render(g);
+                if (obj is Circle && (circle.RemoveCircle()==true))
+                {
+                    objects.Remove(circle); 
+                    circle = new Circle(rnd.Next(40, pbMain.Width -41), rnd.Next(40, pbMain.Height - 41), 0); 
+                    objects.Add(circle); 
+                }
             }
         }
 
