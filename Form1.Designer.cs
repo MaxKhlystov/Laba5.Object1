@@ -28,48 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.pbMain = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txtLog = new System.Windows.Forms.RichTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            pbMain = new PictureBox();
+            timer1 = new System.Windows.Forms.Timer(components);
+            txtLog = new RichTextBox();
+            txtBoxPoint = new RichTextBox();
+            ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
+            SuspendLayout();
             // 
             // pbMain
             // 
-            this.pbMain.Location = new System.Drawing.Point(0, 0);
-            this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(657, 451);
-            this.pbMain.TabIndex = 0;
-            this.pbMain.TabStop = false;
-            this.pbMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMain_Paint);
-            this.pbMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PbMain);
+            pbMain.Location = new Point(0, 0);
+            pbMain.Margin = new Padding(3, 4, 3, 4);
+            pbMain.Name = "pbMain";
+            pbMain.Size = new Size(751, 601);
+            pbMain.TabIndex = 0;
+            pbMain.TabStop = false;
+            pbMain.Click += pbMain_Click;
+            pbMain.Paint += pbMain_Paint;
+            pbMain.MouseClick += PbMain;
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 30;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            timer1.Enabled = true;
+            timer1.Interval = 30;
+            timer1.Tick += timer1_Tick;
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(663, 0);
-            this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(193, 451);
-            this.txtLog.TabIndex = 1;
-            this.txtLog.Text = "";
+            txtLog.Location = new Point(758, 0);
+            txtLog.Margin = new Padding(3, 4, 3, 4);
+            txtLog.Name = "txtLog";
+            txtLog.Size = new Size(220, 600);
+            txtLog.TabIndex = 1;
+            txtLog.Text = "";
+            // 
+            // txtBoxPoint
+            // 
+            txtBoxPoint.Location = new Point(671, 0);
+            txtBoxPoint.Margin = new Padding(3, 4, 3, 4);
+            txtBoxPoint.Name = "txtBoxPoint";
+            txtBoxPoint.Size = new Size(81, 34);
+            txtBoxPoint.TabIndex = 2;
+            txtBoxPoint.Text = "";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 450);
-            this.Controls.Add(this.txtLog);
-            this.Controls.Add(this.pbMain);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(982, 600);
+            Controls.Add(txtBoxPoint);
+            Controls.Add(txtLog);
+            Controls.Add(pbMain);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Form1";
+            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
+            ResumeLayout(false);
 
         }
 
@@ -78,5 +93,6 @@
         private PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
         private RichTextBox txtLog;
+        private RichTextBox txtBoxPoint;
     }
 }
