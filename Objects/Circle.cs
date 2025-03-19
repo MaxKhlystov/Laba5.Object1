@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing.Drawing2D;
 
 namespace Laba5.Objeckt.Objects
 {
@@ -12,7 +13,7 @@ namespace Laba5.Objeckt.Objects
         private float size = 0;
         public Circle(float x, float y, float angle) : base(x, y, angle)
         {
-            size = 50;
+            size = 70;
         }
         public override void Render(Graphics g)
         {
@@ -34,5 +35,12 @@ namespace Laba5.Objeckt.Objects
             }
             else return false;
         }
+        public override GraphicsPath GetGraphicsPath()
+        {
+            var path = base.GetGraphicsPath();
+            path.AddEllipse(-size, -size/2, size, size);
+            return path;
+        }
+
     }
 }

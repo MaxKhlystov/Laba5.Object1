@@ -28,10 +28,12 @@ namespace Laba5.Objeckt
             {
                 txtBoxPoint.Clear();
                 objects.Remove(m);
-                circle = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0); ;
-                point++;
+                circle = null;
+                point++; 
                 string str = "Очки: " + point;
                 txtBoxPoint.Text = str;
+                circle = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0);
+                objects.Add(circle);
             };
 
             player.OnMarkerOverlap += (m) =>
@@ -57,7 +59,7 @@ namespace Laba5.Objeckt
             {
                 if (obj != player && player.Overlaps(obj, g))
                 {
-                    player.Overlap(obj);
+                    player.Overlap(obj); 
                 }
             }
             foreach (var obj in objects.ToList())
