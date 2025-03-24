@@ -10,13 +10,15 @@ namespace Laba5.Objeckt
         List<BaseObject> objects = new();
         Player player;
         Marker marker;
-        Circle circle;
+        Circle circle1;
+        Circle circle2;
         Random rnd = new Random();
         int point = 0;
         public Form1()
         {
             InitializeComponent();
-            circle = new Circle(pbMain.Width / 3, pbMain.Height / 3, 0);
+            circle1 = new Circle(pbMain.Width / 3, pbMain.Height / 3, 0);
+            circle2 = new Circle(pbMain.Width / 3, pbMain.Height / 3, 0);
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
             player.OnOverlap += (p, obj) =>
@@ -28,12 +30,24 @@ namespace Laba5.Objeckt
             {
                 txtBoxPoint.Clear();
                 objects.Remove(m);
-                circle = null;
+                circle1 = null;
                 point++; 
                 string str = "Очки: " + point;
                 txtBoxPoint.Text = str;
-                circle = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0);
-                objects.Add(circle);
+                circle1 = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0);
+                objects.Add(circle1);
+            };
+
+            player.OnCircleOverlap += (m) =>
+            {
+                txtBoxPoint.Clear();
+                objects.Remove(m);
+                circle2 = null;
+                point++;
+                string str = "Очки: " + point;
+                txtBoxPoint.Text = str;
+                circle2 = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0);
+                objects.Add(circle2);
             };
 
             player.OnMarkerOverlap += (m) =>
@@ -44,7 +58,8 @@ namespace Laba5.Objeckt
 
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
 
-            objects.Add(circle);
+            objects.Add(circle1);
+            objects.Add(circle2);
             objects.Add(marker);
             objects.Add(player);
         }
@@ -66,11 +81,17 @@ namespace Laba5.Objeckt
             {
                 g.Transform = obj.GetTransform();
                 obj.Render(g);
-                if (obj is Circle && (circle.RemoveCircle()==true))
+                if (obj is Circle && (circle1.RemoveCircle()==true))
                 {
-                    objects.Remove(circle); 
-                    circle = new Circle(rnd.Next(40, pbMain.Width -41), rnd.Next(40, pbMain.Height - 41), 0); 
-                    objects.Add(circle); 
+                    objects.Remove(circle1); 
+                    circle1 = new Circle(rnd.Next(40, pbMain.Width -41), rnd.Next(40, pbMain.Height - 41), 0); 
+                    objects.Add(circle1); 
+                }
+                if (obj is Circle && (circle2.RemoveCircle() == true))
+                {
+                    objects.Remove(circle2);
+                    circle2 = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0);
+                    objects.Add(circle2);
                 }
             }
         }
