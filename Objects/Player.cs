@@ -45,9 +45,7 @@ namespace Laba5.Objeckt.Objects
             if (obj is Circle)
             {
                 OnCircleOverlap((Circle)obj);
-            }
-
-            if (obj is Marker)
+            } else if (obj is Marker)
             {
                 OnMarkerOverlap((Marker)obj);
             }
