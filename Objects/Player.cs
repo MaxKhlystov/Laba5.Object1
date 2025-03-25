@@ -42,7 +42,7 @@ namespace Laba5.Objeckt.Objects
         public override void Overlap(BaseObject obj)
         {
             base.Overlap(obj);
-            if (obj is Circle)
+            if (obj is Circle circle)
             {
                 OnCircleOverlap((Circle)obj);
             } else if (obj is Marker)

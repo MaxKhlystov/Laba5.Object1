@@ -13,9 +13,19 @@ namespace Laba5.Objeckt.Objects
         private float size = 0;
         public Circle(float x, float y, float angle) : base(x, y, angle)
         {
-            size = 70;
+            size = 80;
         }
-        public override void Render(Graphics g)
+
+        public bool RemoveCircle()
+        {
+            if (size <= 0)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public override void Render(Graphics g)  
         {
             if (size > 0)
             {
@@ -23,24 +33,15 @@ namespace Laba5.Objeckt.Objects
                     new SolidBrush(Color.LightGreen),
                     -size / 2, -size / 2, size, size
                 );
-                size -= 0.5f; 
+                size -= 0.5f;
             }
         }
 
-        public bool RemoveCircle()
-        {
-            if (size <= 1)
-            {
-                return true;
-            }
-            else return false;
-        }
-        public override GraphicsPath GetGraphicsPath()
+        public override GraphicsPath GetGraphicsPath()  
         {
             var path = base.GetGraphicsPath();
-            path.AddEllipse(-size, -size/2, size, size);
+            path.AddEllipse(-size / 2, -size / 2, size, size);
             return path;
         }
-
     }
 }

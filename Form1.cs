@@ -83,7 +83,7 @@ namespace Laba5.Objeckt
                     circle1 = new Circle(rnd.Next(40, pbMain.Width -41), rnd.Next(40, pbMain.Height - 41), 0); 
                     objects.Add(circle1); 
                 }
-                if (obj is Circle && (circle2.RemoveCircle() == true))
+                else if (obj is Circle && (circle2.RemoveCircle() == true))
                 {
                     objects.Remove(circle2);
                     circle2 = new Circle(rnd.Next(40, pbMain.Width - 41), rnd.Next(40, pbMain.Height - 41), 0);
