@@ -26,8 +26,7 @@ namespace Laba5.Objeckt.Objects
 
             g.DrawEllipse(
                 new Pen(Color.Black, 2),
-                    -15,-15,
-                    30,30
+                    -15,-15,30,30
             );
             g.DrawLine(new Pen(Color.Black, 2), 0, 0, 25, 0);
         }
@@ -42,14 +41,13 @@ namespace Laba5.Objeckt.Objects
         public override void Overlap(BaseObject obj)
         {
             base.Overlap(obj);
-            if (obj is Circle circle)
+            if (obj is Circle)
             {
                 OnCircleOverlap((Circle)obj);
             } else if (obj is Marker)
             {
                 OnMarkerOverlap((Marker)obj);
             }
-
         }
     }
 }
